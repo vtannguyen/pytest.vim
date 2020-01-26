@@ -1183,7 +1183,7 @@ function! s:ThisClass(verbose, ...)
     endif
 
     if (a:verbose == 1)
-        call s:RunInSplitWindow(path, extra_flags)
+        call s:RunInSplitWindow(path)
     else
         call s:RunPyTest(path, 0, extra_flags)
     endif
