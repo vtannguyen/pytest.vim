@@ -362,14 +362,7 @@ endfunction
 function! s:RunInSplitWindow(path)
     let cmd = g:pytest_executable . " --tb=short " . a:path
     let command = join(map(split(cmd), 'expand(v:val)'))
-    let winnr = bufwinnr('PytestVerbose.pytest')
-    silent! execute  winnr < 0 ? 'botright new ' . 'PytestVerbose.pytest' : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number filetype=pytest
-    silent! execute 'silent %!'. command
-    silent! execute 'resize ' . line('$')
-    silent! execute 'nnoremap <silent> <buffer> q :q! <CR>'
-    call s:PytestSyntax()
-    autocmd! BufEnter LastSession.pytest call s:CloseIfLastWindow()
+    call VimuxRunCommand(command)
 endfunction
 
 
